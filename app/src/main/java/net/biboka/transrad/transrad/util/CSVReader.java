@@ -1,7 +1,11 @@
 package net.biboka.transrad.transrad.util;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Log;
 import android.util.SparseArray;
+
+import net.biboka.transrad.transrad.R;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,14 +26,15 @@ public class CSVReader {
     private ArrayList<String> header;
     private ArrayList<ArrayList<String>> content;
     boolean alreadyRead = false;
+    private Context context;
 
-    public CSVReader(File fajl) {
-        getTable(fajl);
+    public CSVReader(InputStream fajl) {
+        getTable(context,fajl);
     }
 
-    public void getTable(File csv) {
+    public void getTable(Context context,InputStream csv) {
         try  {
-            BufferedReader reader = new BufferedReader(new FileReader(csv));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open("assets/tr201611.csv")));
             String line = "";
             line = reader.readLine();
             String[] kocka = line.split(",");

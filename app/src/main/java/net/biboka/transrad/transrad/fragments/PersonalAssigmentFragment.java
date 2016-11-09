@@ -16,6 +16,7 @@ import net.biboka.transrad.transrad.util.AssignUtil;
 import net.biboka.transrad.transrad.util.CSVReader;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -34,7 +35,8 @@ public class PersonalAssigmentFragment extends Fragment {
         Calendar cal = Calendar.getInstance();
         int dayofMonth = cal.get(Calendar.DAY_OF_MONTH);
         ArrayList<WorkModel> preziList = new ArrayList<>();
-        File nev = new File(getResources().getIdentifier("FILENAME_WITHOUTH_EXTENSION","raw","tr201611")));
+        /*File nev = new File(getResources().getIdentifier("FILENAME_WITHOUTH_EXTENSION","raw","tr201611")));*/
+        InputStream nev = getResources().openRawResource(R.raw.tr201611);
         CSVReader reader = new CSVReader(nev);
         ArrayList<String> header = reader.getHeader();
         ArrayList<String> content = reader.getContent().get(dayofMonth-1);
