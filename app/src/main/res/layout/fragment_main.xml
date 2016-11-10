@@ -11,7 +11,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -52,16 +53,25 @@
             android:layout_alignParentStart="true"
             android:layout_margin="10dp">
 
-            <TextView
-                android:text="KÖCSÖG"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView" />
-
-            <ListView
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dailyAssignListView" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Mai beosztás:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:padding="4dp" />
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/dailyAssignListView"
+                    android:padding="4dp" />
+            </LinearLayout>
+
         </android.support.v7.widget.CardView>
     </LinearLayout>
 

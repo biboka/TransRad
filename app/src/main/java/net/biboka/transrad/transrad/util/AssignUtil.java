@@ -21,6 +21,6 @@ public class AssignUtil {
         assignmentMap.put("CT","CT");
         assignmentMap.put("CT2","CT2");
         assignmentMap.put("oktat/vizsga","Oktatás / Vizsga");
-        assignmentMap.put("MR","MR (Rad.Klin)");
+        assignmentMap.put("mri","MR (Rad.Klin)");
     }
 }

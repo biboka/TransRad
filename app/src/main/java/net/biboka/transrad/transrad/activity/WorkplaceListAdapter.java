@@ -1,5 +1,7 @@
 package net.biboka.transrad.transrad.activity;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 import net.biboka.transrad.transrad.R;
 import net.biboka.transrad.transrad.model.WorkModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,9 +19,11 @@ import java.util.List;
 
 public class WorkplaceListAdapter extends BaseAdapter {
     private List<WorkModel> sorGeci;
+    private Context context;
 
-    public WorkplaceListAdapter(List<WorkModel> sorGeci) {
+    public WorkplaceListAdapter(Context context, List<WorkModel> sorGeci) {
         this.sorGeci = sorGeci;
+        this.context = context;
     }
 
     @Override
@@ -38,13 +43,19 @@ public class WorkplaceListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View rootView = View.inflate(view.getContext(), R.layout.workplace_listitem,viewGroup);
+        View rootView = LayoutInflater.from(context)
+                .inflate(R.layout.workplace_listitem,viewGroup,false);
         TextView workPlace = (TextView) rootView.findViewById(R.id.workplaceTextView);
         TextView worker = (TextView) rootView.findViewById(R.id.workerTextView);
         WorkModel wm = (WorkModel) getItem(i);
         workPlace.setText(wm.getWorkSpace());
         worker.setText(wm.getWorkerName());
         return rootView;
+    }
+
+    public void addAll (ArrayList<WorkModel> tomb) {
+        sorGeci.addAll(tomb);
+        notifyDataSetChanged();
     }
 }
 
