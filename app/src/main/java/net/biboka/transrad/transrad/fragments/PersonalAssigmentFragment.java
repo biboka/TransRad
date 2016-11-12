@@ -49,8 +49,14 @@ public class PersonalAssigmentFragment extends Fragment {
                 ArrayList<String> header = reader.getHeader();
                 ArrayList<String> content = reader.getContent().get(dayofMonth-1);
                 ArrayList<WorkModel> preziList = new ArrayList<>();
-                for (int i=0;i<header.size();i++) {
-                    preziList.add(new WorkModel(content.get(i),AssignUtil.assignmentMap.get(header.get(i))));
+                if (content.size() != header.size()) {
+                    for (int i = 0; i < content.size(); i++) {
+                        preziList.add(new WorkModel(content.get(i), AssignUtil.assignmentMap.get(header.get(i))));
+                    }
+                } else {
+                    for (int i = 0; i < header.size(); i++) {
+                        preziList.add(new WorkModel(content.get(i), AssignUtil.assignmentMap.get(header.get(i))));
+                    }
                 }
                 return preziList;
             }
@@ -69,6 +75,9 @@ public class PersonalAssigmentFragment extends Fragment {
                             allWorkPlaceToday += ", "+wm.getWorkSpace();
                         }
                     }
+                }
+                if (counter == 0) {
+                    allWorkPlaceToday = "Nincs beosztásod a mai napra";
                 }
                 ( (TextView) rootView.findViewById(R.id.maiBeoszValueTextView)).setText(allWorkPlaceToday);
                 //assignmentToday.setText(allWorkPlaceToday);
