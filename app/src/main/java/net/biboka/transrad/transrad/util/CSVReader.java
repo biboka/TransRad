@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Map;
 
 import okhttp3.OkHttpClient;
@@ -82,7 +83,11 @@ public class CSVReader {
     }
 
     private void getDb() {
-                String url = "http://www.biboka.net/transrad/tr201611.csv";
+                Calendar cal = Calendar.getInstance();
+                int thisYear = cal.get(Calendar.YEAR);
+                int thisMonth = cal.get(Calendar.MONTH)+1;
+                String url = "http://www.biboka.net/transrad/tr"+thisYear+thisMonth+".csv";
+                Log.d("CSV READER", url);
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
                         .url(url)

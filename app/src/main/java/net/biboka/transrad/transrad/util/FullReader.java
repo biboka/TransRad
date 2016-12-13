@@ -44,6 +44,7 @@ public class FullReader {
         int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         String[] arr = db.split("\n");
         String line = "";
+        lastDayOfMonth = arr.length;
         String[] kocka = arr[0].split(",");
         for (int i=0;i<kocka.length;i++) {
             if (kocka[i] == null) {
@@ -78,7 +79,11 @@ public class FullReader {
     }
 
     private void getDb() {
-        String url = "http://www.biboka.net/transrad/tr201611.csv";
+        Calendar cal = Calendar.getInstance();
+        int thisYear = cal.get(Calendar.YEAR);
+        int thisMonth = cal.get(Calendar.MONTH)+1;
+        String url = "http://www.biboka.net/transrad/tr"+thisYear+thisMonth+".csv";
+        Log.d("FULL READER", url);
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)
